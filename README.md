@@ -4,6 +4,7 @@ Demonstrated skills:
 * JavaScript foundations
   * Functions
   * Conditionals
+  * For-loops
   * Strings
   * Variables
 
