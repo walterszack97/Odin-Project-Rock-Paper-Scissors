@@ -23,26 +23,32 @@
         }
 
         function playRound(playerSelection, computerSelection) {
-            if (playerSelection === 'ROCK' && computerSelection === 'SCISSORS') {
-                playerScore += 1;
-                return("You win! ROCK beats SCISSORS")
-            } else if (computerSelection === 'ROCK' && playerSelection === 'SCISSORS') {
-                computerScore += 1;
-                return("You lose! ROCK beats SCISSORS");
-            } else if (playerSelection === 'SCISSORS' && computerSelection === 'PAPER') {
-                playerScore += 1;
-                return("You win! SCISSORS beats PAPER");
-            } else if (computerSelection === 'SCISSORS' && playerSelection === 'PAPER') {
-                computerScore += 1;
-                return("You lose! SCISSORS beats PAPER");
-            } else if (playerSelection === 'PAPER' && computerSelection === 'ROCK') {
-                playerScore += 1;
-                return("You win! PAPER beats ROCK");
-            } else if (computerSelection === 'PAPER' && playerSelection === 'ROCK') {
-                computerScore += 1;
-                return("You lose! PAPER beats ROCK");
-            } else {
-                return ("player threw " + playerSelection + " and computer threw " + computerSelection + ". It's a tie!")
+            if (playerSelection === computerSelection) {
+                return ("player threw " + playerSelection + " and computer threw " + computerSelection + ". It's a tie!");
+            } else if (playerSelection === 'ROCK') { 
+                if (computerSelection === 'SCISSORS') {
+                    playerScore += 1;
+                    return("You win! ROCK beats SCISSORS");
+                } else {
+                    computerScore += 1;
+                    return("You lose! PAPER beats ROCK");
+                }
+            } else if (playerSelection === 'PAPER') { 
+                if (computerSelection === 'ROCK') {
+                    playerScore += 1;
+                    return("You win! PAPER beats ROCK");
+                } else {
+                    computerScore += 1;
+                    return("You lose! SCISSORS beats PAPER");
+                }
+            } else if (playerSelection === 'SCISSORS') { 
+                if (computerSelection === 'PAPER') {
+                    playerScore += 1;
+                    return("You win! SCISSORS beats PAPER");
+                } else {
+                    computerScore += 1;
+                    return("You lose! ROCK beats SCISSORS");
+                }
             }
         }
 
