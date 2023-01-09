@@ -7,14 +7,21 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <div class = "score"></div>
     <div class = "buttons">
         <button id = "rockBtn">ROCK</button>
         <button id = "paperBtn">PAPER</button>
         <button id = "scissorsBtn">SCISSORS</button>
     </div>
-    <div class = "gameText"></div>
-    <div class ="winner"></div>
+    <div class = "gameBubble">
+        <p id="outcome">GAME</p>
+        <p id="playerScore">Player Score: </p>
+        <p id="computerScore">Computer Score: </p>
+        <p id="gameWinner"></p>
+    </div>
+    <div class ="computer">
+        <p>COMPUTER</p>
+        <p id="computerSelect">Computer chose: </p>
+    </div>
 
     <script src = "script.js"></script>
 </body>
