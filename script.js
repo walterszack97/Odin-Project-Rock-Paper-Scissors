@@ -15,71 +15,84 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-     
-        const div = document.createElement('div');
-        div.innerHTML = "player threw " + playerSelection + " and computer threw " + computerSelection + ". It's a tie!";
-        document.body.appendChild(div);
+    
+
+    if (playerSelection === computerSelection) { 
+        p.innerHTML = "player threw " + playerSelection + " and computer threw " + computerSelection + ". It's a tie!";
+        gameText.appendChild(p);
+
 
     } else if (playerSelection === 'ROCK') { 
         if (computerSelection === 'SCISSORS') {
             playerScore += 1;
-        
-            const div = document.createElement('div');
-            div.innerHTML = "You win! ROCK beats SCISSORS";
-            document.body.appendChild(div);
+                     
+            p.innerHTML = "You win! ROCK beats SCISSORS";
+            gameText.appendChild(p);
+            game();
         } else {
             computerScore += 1;
 
-            const div = document.createElement('div');
-            div.innerHTML = "You lose! PAPER beats ROCK";
-            document.body.appendChild(div);
+            p.innerHTML = "You lose! PAPER beats ROCK";
+            gameText.appendChild(p);
+            game();
         }
     } else if (playerSelection === 'PAPER') { 
         if (computerSelection === 'ROCK') {
             playerScore += 1;
 
-            const div = document.createElement('div');
-            div.innerHTML = "You win! PAPER beats ROCK";
-            document.body.appendChild(div);
+            p.innerHTML = "You win! PAPER beats ROCK";
+            gameText.appendChild(p);
+            game();
         } else {
             computerScore += 1;
-  
-            const div = document.createElement('div');
-            div.innerHTML = "You lose! SCISSORS beats PAPER";
-            document.body.appendChild(div);
+
+            p.innerHTML = "You lose! SCISSORS beats PAPER";
+            gameText.appendChild(p);
+            game();
         }
     } else if (playerSelection === 'SCISSORS') { 
         if (computerSelection === 'PAPER') {
             playerScore += 1;
-        
-            const div = document.createElement('div');
-            div.innerHTML = "You win! SCISSORS beats PAPER";
-            document.body.appendChild(div);
+
+            p.innerHTML = "You win! SCISSORS beats PAPER";
+            gameText.appendChild(p);
+            game();
         } else {
             computerScore += 1;
-            
-            const div = document.createElement('div');
-            div.innerHTML = "You lose! ROCK beats SCISSORS";
-            document.body.appendChild(div);
+
+            p.innerHTML = "You lose! ROCK beats SCISSORS";
+            gameText.appendChild(p);
+            game();
         }
     }
 }
 
 function game() {
-   
-   
-    console.log(playRound(playerSelection, computerSelection));
-    console.log("Your score: " + playerScore);
-    console.log("Computer score: " + computerScore);
+    scoreP.textContent = "Your score: " + playerScore + "\t\tComputer score: " + computerScore;
+    score.appendChild(scoreP);
+    
+    
+    if (playerScore >= 5) {
+        winnerH1.textContent = "Congratulations! You win!";
+        winner.appendChild(winnerH1);
+        score.removeChild(scoreP);
+        gameText.removeChild(p);
 
-    if (playerScore > computerScore) {
-        console.log("Congratulations! You win!");
-    } else if (playerScore < computerScore) {
-        console.log("YOU LOSE, TRY AGAIN!");
-    } else {
-        console.log("WOW! It's a tie!");
-    }
+        setTimeout(newGame, 5000);
+    } else if (computerScore >= 5) {
+        winnerH1.textContent = "YOU LOSE, TRY AGAIN!";
+        winner.appendChild(winnerH1);
+        score.removeChild(scoreP);
+        gameText.removeChild(p);
+
+        setTimeout(newGame, 5000);
+    };
+}
+
+function newGame() {
+    playerScore = 0;
+    computerScore = 0;
+    winner.removeChild(winnerH1);
 }
 
 let playerScore = 0;
@@ -97,4 +110,15 @@ paperBtn.addEventListener('click', function() {playRound('PAPER', getComputerCho
 const scissorsBtn = document.querySelector('#scissorsBtn');
 scissorsBtn.addEventListener('click', function() {playRound('SCISSORS', getComputerChoice())});
 
+
+
+/////////MANIPULATE DOM BY CREATING NEW ELEMENTS AND ADDING TEXT WITHIN THE FUNCTIONS///////////////////////
+const score = document.querySelector(".score");
+const scoreP = document.createElement("p");
+
+const gameText = document.querySelector(".gameText");
+const p = document.createElement('p');
+
+const winner = document.querySelector(".winner");
+const winnerH1 = document.createElement('h1');
 
