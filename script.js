@@ -12,15 +12,6 @@ const buttonsBubble = document.querySelector(".buttons");
 let playerScore = 0;
 let computerScore = 0;
 
-
-const gameText = document.querySelector(".gameText");
-const p = document.createElement('p');
-
-const winner = document.querySelector(".winner");
-const winnerH1 = document.createElement('h1');
-
-
-
 ///////////FUNCTIONS TO PLAY GAME//////////////////////
 
 function getComputerChoice() {
@@ -55,7 +46,7 @@ function playRound(playerSelection, computerSelection) {
             outcome.textContent = "You win! ROCK beats SCISSORS"
 
             growUserBubble();
-            game();
+            gameWin();
         } else {
             computerScore += 1;
 
@@ -63,7 +54,7 @@ function playRound(playerSelection, computerSelection) {
             outcome.textContent = "You lose! PAPER beats ROCK";
 
             growComputerBubble();
-            game();
+            gameWin();
         }
     } else if (playerSelection === 'PAPER') { 
         if (computerSelection === 'ROCK') {
@@ -72,14 +63,14 @@ function playRound(playerSelection, computerSelection) {
             myScore.textContent = "Player Score: " + playerScore;
             outcome.textContent = "You win! PAPER beats ROCK";
             growUserBubble();
-            game();
+            gameWin();
         } else {
             computerScore += 1;
 
             theirScore.textContent = "Computer Score: " + computerScore;
             outcome.textContent = "You lose! SCISSORS beats PAPER";
             growComputerBubble();
-            game();
+            gameWin();
         }
     } else if (playerSelection === 'SCISSORS') { 
         if (computerSelection === 'PAPER') {
@@ -88,48 +79,58 @@ function playRound(playerSelection, computerSelection) {
             myScore.textContent = "Player Score: " + playerScore;
             outcome.textContent = "You win! SCISSORS beats PAPER";
             growUserBubble();
-            game();
+            gameWin();
         } else {
             computerScore += 1;
 
             theirScore.textContent = "Computer Score: " + computerScore;
             outcome.textContent = "You lose! ROCK beats SCISSORS";
             growComputerBubble();
-            game();
+            gameWin();
         }
     }
 }
 
-function game() {
-    scoreP.textContent = "Your score: " + playerScore + "\t\tComputer score: " + computerScore;
-    score.appendChild(scoreP);
-    
-    
-    if (playerScore >= 5) {
-        gameWinner.textContent = "Congratulations! You win!";
+function gameWin() {
+    if (playerScore >= 5 || computerScore >= 5){
+        if (playerScore >= 5) {
+            outcome.textContent = "YOU WON!";
+            newGame();
+        } else if (computerScore >= 5) {
+            outcome.textContent = "YOU LOSE, TRY AGAIN!"; 
+            newGame();
+        }
+    }
+}
 
+function startGame() {
+     //reset scores to 0
+     playerScore = 0;
+     computerScore = 0;
+     
+    //hide the html elements
+    buttonsBubble.style.display = "flex";
+    computerBubble.style.display = "flex";
+    myScore.style.display = "block";
+    theirScore.style.display = "block";
 
-        winner.appendChild(winnerH1);
-        score.removeChild(scoreP);
-        gameText.removeChild(p);
+    //reset html element text
+    myScore.textContent = "My Score: " + playerScore;
+    theirScore.textContent = "Computer Score: " + computerScore;
+    outcome.textContent = "GAME";
+    computerSelect.textContent = "Computer chose: "
 
-        setTimeout(newGame, 5000);
-    } else if (computerScore >= 5) {
-        gameWinner.textContent = "YOU LOSE, TRY AGAIN!";
-
-
-        winner.appendChild(winnerH1);
-        score.removeChild(scoreP);
-        gameText.removeChild(p);
-
-        setTimeout(newGame, 5000);
-    };
+    //reset bubble size
+    buttonsBubble.style.width = "150px";
+    buttonsBubble.style.height = "150px";
+    computerBubble.style.width = "150px";
+    computerBubble.style.height = "150px";
 }
 
 function newGame() {
-    playerScore = 0;
-    computerScore = 0;
-    winner.removeChild(winnerH1);
+    //hide the html elements
+    buttonsBubble.style.display = "none";
+    computerBubble.style.display = "none";
 }
 
 function growUserBubble() {
@@ -158,6 +159,9 @@ paperBtn.addEventListener('click', () => {playRound('PAPER', getComputerChoice()
 
 const scissorsBtn = document.querySelector('#scissorsBtn');
 scissorsBtn.addEventListener('click', () => {playRound('SCISSORS', getComputerChoice())});
+
+const playButton = document.querySelector("#outcome");
+playButton.addEventListener('click', () => {startGame()});
 
 
 
