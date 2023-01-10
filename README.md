@@ -4,8 +4,15 @@ Demonstrated skills:
 * JavaScript foundations
   * Functions
   * Conditionals
-  * For-loops
   * Strings
   * Variables
+  * Dom Manipulation
+  * Event Handlers
 
-[Link to assignment page](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors#introduction)
+* CSS foundations
+  * Flex-box
+
+* HTML foundations
+
+
+[Link to assignment page](https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors)
