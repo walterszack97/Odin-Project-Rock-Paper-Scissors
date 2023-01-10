@@ -6,6 +6,12 @@ const theirScore = document.querySelector("#computerScore");
 const gameWinner = document.querySelector("#gameWinner");
 const outcome = document.querySelector("#outcome");
 const computerSelect = document.querySelector("#computerSelect");
+const computerBubble = document.querySelector(".computer");
+const buttonsBubble = document.querySelector(".buttons");
+
+let playerScore = 0;
+let computerScore = 0;
+
 
 const gameText = document.querySelector(".gameText");
 const p = document.createElement('p');
@@ -47,12 +53,16 @@ function playRound(playerSelection, computerSelection) {
             
             myScore.textContent = "Player Score: " + playerScore;
             outcome.textContent = "You win! ROCK beats SCISSORS"
+
+            growUserBubble();
             game();
         } else {
             computerScore += 1;
 
             theirScore.textContent = "Computer Score: " + computerScore;
             outcome.textContent = "You lose! PAPER beats ROCK";
+
+            growComputerBubble();
             game();
         }
     } else if (playerSelection === 'PAPER') { 
@@ -61,12 +71,14 @@ function playRound(playerSelection, computerSelection) {
 
             myScore.textContent = "Player Score: " + playerScore;
             outcome.textContent = "You win! PAPER beats ROCK";
+            growUserBubble();
             game();
         } else {
             computerScore += 1;
 
             theirScore.textContent = "Computer Score: " + computerScore;
             outcome.textContent = "You lose! SCISSORS beats PAPER";
+            growComputerBubble();
             game();
         }
     } else if (playerSelection === 'SCISSORS') { 
@@ -75,12 +87,14 @@ function playRound(playerSelection, computerSelection) {
 
             myScore.textContent = "Player Score: " + playerScore;
             outcome.textContent = "You win! SCISSORS beats PAPER";
+            growUserBubble();
             game();
         } else {
             computerScore += 1;
 
             theirScore.textContent = "Computer Score: " + computerScore;
             outcome.textContent = "You lose! ROCK beats SCISSORS";
+            growComputerBubble();
             game();
         }
     }
@@ -118,9 +132,21 @@ function newGame() {
     winner.removeChild(winnerH1);
 }
 
-let playerScore = 0;
-let computerScore = 0;
+function growUserBubble() {
+    accessElement = getComputedStyle(buttonsBubble);
+    accessAttributeWidth = parseInt(accessElement.width);
+    accessAttributeHeight = parseInt(accessElement.height);
+    buttonsBubble.style.width = (accessAttributeWidth + 80) + 'px';
+    buttonsBubble.style.height = (accessAttributeHeight + 80) + 'px';
+}
 
+function growComputerBubble() {
+    accessElementComp = getComputedStyle(computerBubble);
+    accessAttributeWidthComp = parseInt(accessElementComp.width);
+    accessAttributeHeightComp = parseInt(accessElementComp.height);
+    computerBubble.style.width = (accessAttributeWidthComp + 80) + 'px';
+    computerBubble.style.height = (accessAttributeHeightComp + 80) + 'px';
+}
 
 
 /////////////////////ADDING EVENT HANDLERS TO BUTTONS//////////////////////////
